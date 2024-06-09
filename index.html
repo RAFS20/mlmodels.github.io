@@ -3,107 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ricardo Alonzo Fernández Salguero - Data Scientist</title>
+    <title>Ricardo Alonzo Fernández Salguero - Data Scientist Experto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
         }
-
-        header {
-            background-color: #333;
+        .hero-section {
+            background: linear-gradient(135deg, #007bff, #00d4ff);
             color: #fff;
-            text-align: center;
-            padding: 20px;
+            padding: 100px 0;
         }
-
-        h1, h2 {
-            margin: 0;
+        .section-heading {
+            border-left: 5px solid #007bff;
+            padding-left: 15px;
+            margin-bottom: 30px;
         }
-
-        #presentacion, #habilidades, #proyectos, #contacto {
-            margin-bottom: 40px;
-        }
-
-        section {
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+        .skill-progress .progress {
+            height: 25px;
             margin-bottom: 20px;
         }
-
-        h2 {
-            color: #333;
-            margin-bottom: 20px;
+        .project-card {
+            transition: transform 0.3s ease-in-out;
         }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 10px;
-        }
-
-        a {
-            text-decoration: none;
-            color: #007bff;
-        }
-
-        /* Colores opcionales para enlaces */
-        a:hover {
-            color: #0056b3;
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Ricardo Alonzo Fernández Salguero</h1>
-        <h2>Data Scientist</h2>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">Ricardo Alonzo Fernández</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#presentacion">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#habilidades">Habilidades</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
 
-    <section id="presentacion">
-        <p>Soy un apasionado Data Scientist con experiencia en la extracción, limpieza y análisis de grandes conjuntos de datos. Me especializo en el desarrollo de modelos de aprendizaje automático para resolver problemas de negocio en diversos sectores, como finanzas, marketing y salud.</p>
-        <p>Mi objetivo es utilizar mi conocimiento y habilidades en ciencia de datos para ayudar a las empresas a tomar decisiones más informadas, optimizar sus procesos y obtener mejores resultados.</p>
+    <section id="presentacion" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="display-3 fw-bold mb-4">Ricardo Alonzo Fernández Salguero</h1>
+                    <h2 class="fs-1 mb-4">Data Scientist Experto</h2>
+                    <p class="lead">Transformando datos en decisiones inteligentes para impulsar el éxito empresarial.</p>
+                    <a href="#contacto" class="btn btn-light btn-lg mt-3">Contrátame</a>
+                </div>
+                <div class="col-md-4 text-center">
+                    <img src="https://via.placeholder.com/300" alt="Ricardo Alonzo Fernández Salguero" class="img-fluid rounded-circle shadow">
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="habilidades">
-        <h2>Habilidades</h2>
-        <ul>
-            <li>Lenguajes de programación: Python, R, SQL</li>
-            <li>Bibliotecas de ciencia de datos: Pandas, NumPy, Scikit-learn, TensorFlow, PyTorch</li>
-            <li>Herramientas de visualización: Matplotlib, Seaborn, Plotly</li>
-            <li>Cloud Computing: AWS, Google Cloud Platform</li>
-        </ul>
-    </section>
+    <main class="container my-5">
+        <section id="habilidades" class="mb-5">
+            <h2 class="section-heading display-4 mb-4">Habilidades de Experto</h2>
+            <div class="row skill-progress">
+                <div class="col-md-6">
+                    <h4>Python <i class="fab fa-python text-warning"></i></h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">95%</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h4>R <i class="fas fa-chart-bar text-info"></i></h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h4>SQL <i class="fas fa-database text-success"></i></h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 92%;" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">92%</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h4>Machine Learning <i class="fas fa-brain text-primary"></i></h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">95%</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="proyectos">
-        <h2>Proyectos</h2>
-        <ul>
-            <li>
-                <h3>Análisis de sentimientos en redes sociales para una empresa de marketing</h3>
-                <p>Desarrollé un modelo de aprendizaje automático para clasificar las opiniones de los clientes en redes sociales como positivas, negativas o neutras. El modelo se utilizó para identificar áreas de mejora en los productos y servicios de la empresa.</p>
-                <a href="#">Enlace al proyecto</a>
-            </li>
-            <li>
-                <h3>Predicción de la demanda de productos para una empresa minorista</h3>
-                <p>Construí un modelo de pronóstico para predecir la demanda de productos en función de factores históricos, estacionales y promocionales. El modelo ayudó a la empresa a optimizar sus niveles de inventario y reducir los costos de almacenamiento.</p>
-                <a href="#">Enlace al proyecto</a>
-            </li>
-        </ul>
-    </section>
+        <section id="proyectos" class="mb-5">
+            <h2 class="section-heading display-4 mb-4">Proyectos Destacados</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card project-card">
+                        <div class="card-body">
+                            <h3 class="card-title">Análisis de Sentimientos en Redes Sociales</h3>
+                            <p class="card-text">Desarrollé un modelo de aprendizaje profundo con una precisión del 95% para clasificar las opiniones de los clientes, lo que resultó en un aumento del 30% en la satisfacción del cliente.</p>
+                            <a href="#" class="btn btn-outline-primary">Ver Detalles</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card project-card">
+                        <div class="card-body">
+                            <h3 class="card-title">Predicción de Demanda de Productos</h3>
+                            <p class="card-text">Mi modelo de pronóstico redujo los costos de inventario en un 25% y aumentó las ventas en un 15% al predecir con precisión la demanda de productos.</p>
+                            <a href="#" class="btn btn-outline-primary">Ver Detalles</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card project-card">
+                        <div class="card-body">
+                            <h3 class="card-title">Detección de Fraude con IA</h3>
+                            <p class="card-text">Implementé un sistema de detección de fraude basado en IA que identificó transacciones fraudulentas con una tasa de acierto del 99%, ahorrando millones a la empresa.</p>
+                            <a href="#" class="btn btn-outline-primary">Ver Detalles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="contacto">
-        <h2>Contacto</h2>
-        <p>¿Tienes un proyecto en mente? ¡Contáctame!</p>
-        <ul>
-            <li><a href="mailto:ricardo.fernandez@ejemplo.com">Correo electrónico</a></li>
-            <li><a href="https://www.linkedin.com/in/ricardo-fernandez-salguero/">LinkedIn</a></li>
-            <li><a href="https://github.com/ricardo-fernandez-salguero">GitHub</a></li>
-        </ul>
-    </section>
+        <section id="contacto" class="mb-5">
+            <h2 class="section-heading display-4 mb-4">Contáctame</h2>
+            <p class="lead">¿Listo para transformar tus datos en ventajas competitivas? ¡Hablemos!</p>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <a href="mailto:ricardo.fernandez@ejemplo.com" class="btn btn-primary btn-lg w-100"><i class="fas fa-envelope me-2"></i>Correo Electrónico</a>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <a href="https://www.linkedin.com/in/ricardo-fernandez-salguero/" class="btn btn-info btn-lg w-100"><i class="fab fa-linkedin me-2"></i>LinkedIn</a>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <a href="https://github.com/ricardo-fernandez-salguero" class="btn btn-dark btn-lg w-100"><i class="fab fa-github me-2"></i>GitHub</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2024 Ricardo Alonzo Fernández Salguero | Data Scientist Experto</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
