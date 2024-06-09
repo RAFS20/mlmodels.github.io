@@ -27,10 +27,14 @@
         }
         .project-card {
             transition: transform 0.3s ease-in-out;
+            height: 100%;
         }
         .project-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .cv-table {
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -47,6 +51,7 @@
                         <li class="nav-item"><a class="nav-link" href="#presentacion">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="#habilidades">Habilidades</a></li>
                         <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#cv">CV</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
                     </ul>
                 </div>
@@ -64,7 +69,7 @@
                     <a href="#contacto" class="btn btn-light btn-lg mt-3">Contrátame</a>
                 </div>
                 <div class="col-md-4 text-center">
-                    <img src="https://via.placeholder.com/300" alt="Ricardo Alonzo Fernández Salguero" class="img-fluid rounded-circle shadow">
+                    <img src="https://0.academia-photos.com/46936524/18758605/104981051/s200_ricardo_alonzo.fern_ndez_salguero.jpg" alt="Ricardo Alonzo Fernández Salguero" class="img-fluid rounded-circle shadow" style="width: 250px; height: 250px; object-fit: cover;">
                 </div>
             </div>
         </div>
@@ -81,19 +86,19 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <h4>R <i class="fas fa-chart-bar text-info"></i></h4>
+                    <h4>Machine Learning <i class="fas fa-brain text-info"></i></h4>
                     <div class="progress">
                         <div class="progress-bar bg-info" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <h4>SQL <i class="fas fa-database text-success"></i></h4>
+                    <h4>Big Data <i class="fas fa-database text-success"></i></h4>
                     <div class="progress">
                         <div class="progress-bar bg-success" role="progressbar" style="width: 92%;" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">92%</div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <h4>Machine Learning <i class="fas fa-brain text-primary"></i></h4>
+                    <h4>Time Series <i class="fas fa-chart-line text-primary"></i></h4>
                     <div class="progress">
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">95%</div>
                     </div>
@@ -107,31 +112,89 @@
                 <div class="col-md-4 mb-4">
                     <div class="card project-card">
                         <div class="card-body">
-                            <h3 class="card-title">Análisis de Sentimientos en Redes Sociales</h3>
-                            <p class="card-text">Desarrollé un modelo de aprendizaje profundo con una precisión del 95% para clasificar las opiniones de los clientes, lo que resultó en un aumento del 30% en la satisfacción del cliente.</p>
-                            <a href="#" class="btn btn-outline-primary">Ver Detalles</a>
+                            <h3 class="card-title">Predicción de Datos Financieros</h3>
+                            <p class="card-text">Implementé modelos avanzados de aprendizaje profundo (RNN, LSTM, GRU) para predecir tendencias financieras. Mis modelos superaron a AutoARIMA, demostrando la eficacia de las redes neuronales en este campo.</p>
+                            <a href="https://github.com/RAFS20/Time-Series/blob/main/LSTM_GRU_RNN_AutoARIMA.ipynb" target="_blank" class="btn btn-outline-primary">Ver Detalles</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card project-card">
                         <div class="card-body">
-                            <h3 class="card-title">Predicción de Demanda de Productos</h3>
-                            <p class="card-text">Mi modelo de pronóstico redujo los costos de inventario en un 25% y aumentó las ventas en un 15% al predecir con precisión la demanda de productos.</p>
-                            <a href="#" class="btn btn-outline-primary">Ver Detalles</a>
+                            <h3 class="card-title">IA y MongoDB para Imágenes</h3>
+                            <p class="card-text">Desarrollé un sistema que utiliza PCA para reducir imágenes, almacenándolas eficientemente en MongoDB. Este enfoque aceleró el entrenamiento de modelos de IA en un 30% y mejoró la privacidad de los datos.</p>
+                            <a href="https://github.com/RAFS20/Mongo_DB/blob/main/Imágenes_en_Mongo_DB.ipynb" target="_blank" class="btn btn-outline-primary">Ver Detalles</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card project-card">
                         <div class="card-body">
-                            <h3 class="card-title">Detección de Fraude con IA</h3>
-                            <p class="card-text">Implementé un sistema de detección de fraude basado en IA que identificó transacciones fraudulentas con una tasa de acierto del 99%, ahorrando millones a la empresa.</p>
-                            <a href="#" class="btn btn-outline-primary">Ver Detalles</a>
+                            <h3 class="card-title">Herramienta Automática de Análisis</h3>
+                            <p class="card-text">Creé una herramienta Python que automatiza el análisis de datos, generando visualizaciones y estadísticas. Ha reducido el tiempo de análisis en un 50% para equipos de marketing y finanzas.</p>
+                            <a href="https://github.com/RAFS20/Analisis-de-datos/blob/main/Data_Analysis.ipynb" target="_blank" class="btn btn-outline-primary">Ver Detalles</a>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <section id="cv" class="mb-5">
+            <h2 class="section-heading display-4 mb-4">Resumen de CV</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover cv-table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Categoría</th>
+                            <th>Detalles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Educación</td>
+                            <td>
+                                <ul>
+                                    <li>Ph.D. en Inteligencia Artificial, Universitat Politècnica de Catalunya (en curso)</li>
+                                    <li>Ph.D. en Estadística Matemática y Aplicada, Universidad de Granada (en curso)</li>
+                                    <li>Máster en Estadística Aplicada, Universidad de Granada</li>
+                                    <li>Máster en Desarrollo de Software, Universidad de Granada</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Experiencia</td>
+                            <td>
+                                <ul>
+                                    <li>Data Scientist, Grupo Mediapro (2022-Presente)</li>
+                                    <li>Profesor de Ingeniería, GEM Perú y Tech Lab Bolivia (2022-Presente)</li>
+                                    <li>Analista de Datos, IENSODE (2018-Presente)</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Habilidades</td>
+                            <td>
+                                <ul>
+                                    <li>Lenguajes: Python, R, SQL, Java, JavaScript</li>
+                                    <li>Tecnologías: TensorFlow, Keras, PyTorch, Hadoop, Spark, MongoDB</li>
+                                    <li>Áreas: Machine Learning, Big Data, Time Series, NLP</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Certificaciones</td>
+                            <td>
+                                <ul>
+                                    <li>TensorFlow Developer Certificate</li>
+                                    <li>Google Project Management</li>
+                                    <li>Google Data Analytics</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <a href="https://drive.google.com/file/d/10YAUIxkLiIPRGeY22OMgddyCGoIuaC_X/view?usp=sharing" target="_blank" class="btn btn-primary">Ver CV Completo</a>
         </section>
 
         <section id="contacto" class="mb-5">
@@ -139,13 +202,13 @@
             <p class="lead">¿Listo para transformar tus datos en ventajas competitivas? ¡Hablemos!</p>
             <div class="row">
                 <div class="col-md-4 mb-3">
-                    <a href="mailto:ricardo.fernandez@ejemplo.com" class="btn btn-primary btn-lg w-100"><i class="fas fa-envelope me-2"></i>Correo Electrónico</a>
+                    <a href="mailto:rialofesalp@gmail.com" class="btn btn-primary btn-lg w-100"><i class="fas fa-envelope me-2"></i>Correo Electrónico</a>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <a href="https://www.linkedin.com/in/ricardo-fernandez-salguero/" class="btn btn-info btn-lg w-100"><i class="fab fa-linkedin me-2"></i>LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/ricardoalonzofernandezsalguero/" target="_blank" class="btn btn-info btn-lg w-100"><i class="fab fa-linkedin me-2"></i>LinkedIn</a>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <a href="https://github.com/ricardo-fernandez-salguero" class="btn btn-dark btn-lg w-100"><i class="fab fa-github me-2"></i>GitHub</a>
+                    <a href="https://github.com/RAFS20" target="_blank" class="btn btn-dark btn-lg w-100"><i class="fab fa-github me-2"></i>GitHub</a>
                 </div>
             </div>
         </section>
