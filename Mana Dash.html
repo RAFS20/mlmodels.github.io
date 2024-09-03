@@ -1,0 +1,528 @@
+<html><head><base href="https://rafs20.github.io/"><title>Managerial Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar-brand {
+            font-weight: 700;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+        .card-header {
+            background-color: #fff;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .kpi-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .chart-container {
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class='bx bxs-dashboard'></i> ManaDash
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class='bx bx-user'></i> Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class='bx bx-cog'></i> Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class='bx bx-log-out'></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title text-muted mb-0">Revenue Growth</h6>
+                        <p class="kpi-value text-success mb-0" id="revenueGrowth">+12.5%</p>
+                        <small class="kpi-label">vs. last quarter</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title text-muted mb-0">Cost Optimization</h6>
+                        <p class="kpi-value text-primary mb-0" id="costOptimization">-8.3%</p>
+                        <small class="kpi-label">vs. target</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title text-muted mb-0">Customer Acquisition</h6>
+                        <p class="kpi-value text-info mb-0" id="customerAcquisition">1,254</p>
+                        <small class="kpi-label">new customers this month</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title text-muted mb-0">Churn Rate</h6>
+                        <p class="kpi-value text-danger mb-0" id="churnRate">2.7%</p>
+                        <small class="kpi-label">monthly average</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Revenue and Profit Trends</h5>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="revenueProfitFilter" data-bs-toggle="dropdown">
+                                This Year
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="updateRevenueProfitChart('month')">This Month</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateRevenueProfitChart('quarter')">This Quarter</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateRevenueProfitChart('year')">This Year</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Expense Breakdown</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="expenseChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Market Share</h5>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="marketShareFilter" data-bs-toggle="dropdown">
+                                All Products
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="updateMarketShareChart('all')">All Products</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateMarketShareChart('software')">Software</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateMarketShareChart('hardware')">Hardware</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateMarketShareChart('services')">Services</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="marketShareChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Employee Performance</h5>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="employeePerformanceFilter" data-bs-toggle="dropdown">
+                                All Departments
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="updateEmployeePerformance('all')">All Departments</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateEmployeePerformance('sales')">Sales</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateEmployeePerformance('marketing')">Marketing</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateEmployeePerformance('engineering')">Engineering</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateEmployeePerformance('support')">Customer Support</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="heatmapChart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Customer Lifetime Value vs. Satisfaction</h5>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="customerSegmentFilter" data-bs-toggle="dropdown">
+                                All Segments
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="updateCustomerScatterPlot('all')">All Segments</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateCustomerScatterPlot('enterprise')">Enterprise</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateCustomerScatterPlot('sme')">SME</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateCustomerScatterPlot('startup')">Startup</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="scatterChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light text-center text-lg-start mt-4">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+            Developed by: Ricardo Alonzo Fernandez Salguero |
+            <a href="mailto:rialofesalp@gmail.com">Email</a> |
+            <a href="https://github.com/RAFS20" target="_blank">GitHub</a> |
+            <a href="https://www.linkedin.com/in/ricardoalonzofernandezsalguero/" target="_blank">LinkedIn</a> |
+            <a href="https://rafs20.github.io/" target="_blank">Website</a> |
+            <a href="https://wa.me/59162189544" target="_blank">WhatsApp</a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Fictional data
+        const data = {
+            revenueProfitYear: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                revenue: [65, 59, 80, 81, 56, 55, 40, 60, 55, 70, 75, 80],
+                profit: [28, 48, 40, 19, 86, 27, 90, 40, 30, 45, 50, 55]
+            },
+            revenueProfitQuarter: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10', 'Week 11', 'Week 12'],
+                revenue: [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75],
+                profit: [10, 12, 15, 18, 20, 22, 25, 28, 30, 32, 35, 38]
+            },
+            revenueProfitMonth: {
+                labels: ['Day 1', 'Day 5', 'Day 10', 'Day 15', 'Day 20', 'Day 25', 'Day 30'],
+                revenue: [10, 15, 20, 25, 30, 35, 40],
+                profit: [5, 8, 10, 12, 15, 18, 20]
+            },
+            expenses: {
+                labels: ['Marketing', 'Operations', 'HR', 'R&D', 'IT'],
+                data: [12, 19, 3, 5, 2]
+            },
+            marketShare: {
+                all: {
+                    labels: ['Product A', 'Product B', 'Product C', 'Others'],
+                    data: [30, 25, 20, 25]
+                },
+                software: {
+                    labels: ['Software X', 'Software Y', 'Software Z', 'Others'],
+                    data: [40, 30, 20, 10]
+                },
+                hardware: {
+                    labels: ['Hardware P', 'Hardware Q', 'Hardware R', 'Others'],
+                    data: [35, 25, 25, 15]
+                },
+                services: {
+                    labels: ['Service M', 'Service N', 'Service O', 'Others'],
+                    data: [45, 20, 20, 15]
+                }
+            },
+            employeePerformance: {
+                all: [
+                    {name: 'Sales', data: [65, 72, 78, 75, 65, 70, 78, 80, 82, 85, 88, 90]},
+                    {name: 'Marketing', data: [70, 75, 72, 78, 82, 80, 75, 78, 80, 85, 87, 90]},
+                    {name: 'Engineering', data: [80, 82, 85, 88, 87, 85, 90, 92, 95, 92, 90, 95]},
+                    {name: 'Customer Support', data: [75, 78, 80, 82, 85, 88, 90, 88, 85, 87, 90, 92]},
+                    {name: 'HR', data: [70, 72, 75, 78, 80, 82, 85, 87, 88, 90, 92, 95]}
+                ],
+                sales: [{name: 'Sales', data: [65, 72, 78, 75, 65, 70, 78, 80, 82, 85, 88, 90]}],
+                marketing: [{name: 'Marketing', data: [70, 75, 72, 78, 82, 80, 75, 78, 80, 85, 87, 90]}],
+                engineering: [{name: 'Engineering', data: [80, 82, 85, 88, 87, 85, 90, 92, 95, 92, 90, 95]}],
+                support: [{name: 'Customer Support', data: [75, 78, 80, 82, 85, 88, 90, 88, 85, 87, 90, 92]}]
+            },
+            customerData: {
+                all: [
+                    {x: 7.5, y: 1200}, {x: 8.2, y: 1500}, {x: 6.8, y: 900}, {x: 9.0, y: 2000},
+                    {x: 7.2, y: 1100}, {x: 8.7, y: 1800}, {x: 6.5, y: 800}, {x: 8.0, y: 1400},
+                    {x: 7.8, y: 1300}, {x: 9.2, y: 2200}, {x: 7.0, y: 1000}, {x: 8.5, y: 1700}
+                ],
+                enterprise: [
+                    {x: 8.5, y: 2000}, {x: 9.0, y: 2200}, {x: 8.7, y: 1900}, {x: 9.2, y: 2400},
+                    {x: 8.8, y: 2100}, {x: 9.5, y: 2500}
+                ],
+                sme: [
+                    {x: 7.5, y: 1200}, {x: 8.0, y: 1400}, {x: 7.8, y: 1300}, {x: 8.2, y: 1500},
+                    {x: 7.7, y: 1250}, {x: 8.3, y: 1550}
+                ],
+                startup: [
+                    {x: 6.5, y: 800}, {x: 7.0, y: 1000}, {x: 6.8, y: 900}, {x: 7.2, y: 1100},
+                    {x: 6.7, y: 850}, {x: 7.3, y: 1150}
+                ]
+            }
+        };
+
+        // Chart initialization
+        let revenueChart, expenseChart, marketShareChart, heatmapChart, scatterChart;
+
+        // Helper function to update KPIs
+        function updateKPIs(period) {
+            const kpis = {
+                month: {revenueGrowth: '+8.5%', costOptimization: '-5.2%', customerAcquisition: '854', churnRate: '2.1%'},
+                quarter: {revenueGrowth: '+10.7%', costOptimization: '-7.1%', customerAcquisition: '2,765', churnRate: '2.4%'},
+                year: {revenueGrowth: '+12.5%', costOptimization: '-8.3%', customerAcquisition: '12,540', churnRate: '2.7%'}
+            };
+
+            document.getElementById('revenueGrowth').textContent = kpis[period].revenueGrowth;
+            document.getElementById('costOptimization').textContent = kpis[period].costOptimization;
+            document.getElementById('customerAcquisition').textContent = kpis[period].customerAcquisition;
+            document.getElementById('churnRate').textContent = kpis[period].churnRate;
+        }
+
+        // Revenue and Profit Chart
+        function initRevenueChart() {
+            const ctx = document.getElementById('revenueChart').getContext('2d');
+            revenueChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.revenueProfitYear.labels,
+                    datasets: [{
+                        label: 'Revenue',
+                        data: data.revenueProfitYear.revenue,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        tension: 0.1
+                    }, {
+                        label: 'Profit',
+                        data: data.revenueProfitYear.profit,
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        function updateRevenueProfitChart(period) {
+            const chartData = data[`revenueProfit${period.charAt(0).toUpperCase() + period.slice(1)}`];
+            revenueChart.data.labels = chartData.labels;
+            revenueChart.data.datasets[0].data = chartData.revenue;
+            revenueChart.data.datasets[1].data = chartData.profit;
+            revenueChart.update();
+            document.getElementById('revenueProfitFilter').textContent = `This ${period.charAt(0).toUpperCase() + period.slice(1)}`;
+            updateKPIs(period);
+        }
+
+        // Expense Breakdown Chart
+        function initExpenseChart() {
+            const ctx = document.getElementById('expenseChart').getContext('2d');
+            expenseChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.expenses.labels,
+                    datasets: [{
+                        label: 'Expenses',
+                        data: data.expenses.data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Market Share Chart
+        function initMarketShareChart() {
+            const ctx = document.getElementById('marketShareChart').getContext('2d');
+            marketShareChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: data.marketShare.all.labels,
+                    datasets: [{
+                        data: data.marketShare.all.data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)',
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(255, 206, 86, 0.8)',
+                            'rgba(75, 192, 192, 0.8)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        function updateMarketShareChart(category) {
+            const chartData = data.marketShare[category];
+            marketShareChart.data.labels = chartData.labels;
+            marketShareChart.data.datasets[0].data = chartData.data;
+            marketShareChart.update();
+            document.getElementById('marketShareFilter').textContent = category.charAt(0).toUpperCase() + category.slice(1);
+        }
+
+        // Employee Performance Heatmap
+        function initHeatmapChart() {
+            const options = {
+                series: data.employeePerformance.all,
+                chart: {
+                    height: 300,
+                    type: 'heatmap',
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                colors: ["#008FFB"],
+                title: {
+                    text: 'Employee Performance by Department'
+                },
+                xaxis: {
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                }
+            };
+
+            heatmapChart = new ApexCharts(document.querySelector("#heatmapChart"), options);
+            heatmapChart.render();
+        }
+
+        function updateEmployeePerformance(department) {
+            heatmapChart.updateSeries(data.employeePerformance[department]);
+            document.getElementById('employeePerformanceFilter').textContent = department.charAt(0).toUpperCase() + department.slice(1);
+        }
+
+        // Customer Lifetime Value vs. Satisfaction Scatter Plot
+        function initScatterChart() {
+            const ctx = document.getElementById('scatterChart').getContext('2d');
+            scatterChart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Customers',
+                        data: data.customerData.all,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Customer Satisfaction Score'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Customer Lifetime Value ($)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateCustomerScatterPlot(segment) {
+            scatterChart.data.datasets[0].data = data.customerData[segment];
+            scatterChart.update();
+            document.getElementById('customerSegmentFilter').textContent = segment.charAt(0).toUpperCase() + segment.slice(1);
+        }
+
+        // Initialize all charts
+        document.addEventListener('DOMContentLoaded', function() {
+            initRevenueChart();
+            initExpenseChart();
+            initMarketShareChart();
+            initHeatmapChart();
+            initScatterChart();
+        });
+
+        // Add interactivity and tooltips
+        const addTooltips = (chart) => {
+            chart.options.plugins = {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                            }
+                            return label;
+                        }
+                    }
+                }
+            };
+            chart.update();
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            [revenueChart, expenseChart, marketShareChart, scatterChart].forEach(addTooltips);
+        });
+    </script>
+</body>
+</html>
